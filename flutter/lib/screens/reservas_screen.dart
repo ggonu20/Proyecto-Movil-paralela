@@ -9,51 +9,6 @@ class ReservasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Reservas'),
-        ),
-
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FormsScreen(
-                          onSubmit: (roomCode, bookingToken, date){
-                            print('Datos del formulario : $roomCode, $bookingToken, $date');
-                          },
-                      )
-                      ),
-                    );
-                  },
-                  child: const Text('reserveSearch'),
-                ),
-                
-                SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    // Acción al presionar "Reservas"
-                    print('Reservas presionado');
-                  },
-                  child: Text('Crear Reserva'),
-                ),
-              ],
-          ),
-        ),
-    );
-  }
-}
-
-class MisReservasScreen extends StatelessWidget {
-  const MisReservasScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
       appBar: AppBar(
         title: const Text('Mis Reservas'),
       ),
@@ -63,8 +18,16 @@ class MisReservasScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Acción al presionar "buscar reserva"
-                print('Buscar Reservas presionado');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FormsScreen(
+                      onSubmit: (roomCode, bookingToken, date){
+                        print('Datos del formulario : $roomCode, $bookingToken, $date');
+                      },
+                    )
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(71, 123, 212, 126), 
@@ -103,48 +66,6 @@ class MisReservasScreen extends StatelessWidget {
                 primary: Color.fromARGB(70, 206, 28, 28), // Cambia el color de fondo del botón
               ),
               child: Text('Eliminar Reserva'),
-            ),
-            SizedBox(height: 16),
-            ]
-      ),
-    ),
-    );
-  }
-}
-
-class SalasScreen extends StatelessWidget {
-  const SalasScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Salas'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                // Acción al presionar "buscar sala por codigo"
-                print('Buscar sala por codigo');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
-              ),
-              child: Text('Buscar sala por codigo'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Acción al presionar "Mostrar salas"
-                print('Mostrar salas');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
-              ),
-              child: Text('Mostrar salas'),
             ),
             SizedBox(height: 16),
             ]

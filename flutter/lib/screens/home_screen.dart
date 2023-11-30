@@ -1,5 +1,6 @@
 import 'package:cpyd/screens/login_screen.dart'; //importar screen login
 import 'package:cpyd/screens/reservas_screen.dart'; //importar screen reservas
+import 'package:cpyd/screens/salas_screen.dart'; //importar screen salas
 
 import 'package:cpyd/services/google_service.dart'; //importar google_services que tiene las funciones login(), getData(), disconnect()
 import 'package:cpyd/services/rooms.dart';// importar rooms que tiene las funciones obtenerSalas(String jwt) async, 
@@ -85,6 +86,17 @@ class HomeScreen extends StatelessWidget {
                               builder: (context) => const ReservasScreen(),
                             ),);},
                         child: const Text('Reservas'),
+                      ),
+                  const SizedBox(height: 16), // Espacio entre la boton y boton
+                      //Boton reservas_screen
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SalasScreen(),
+                            ),);},
+                        child: const Text('Salas'),
                       ),
               ],
             ),
