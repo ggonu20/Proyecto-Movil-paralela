@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cpyd/forms/reservas_forms.dart'; //importa forms
 
 class ReservasScreen extends StatelessWidget {
   const ReservasScreen({super.key});
@@ -16,11 +17,20 @@ class ReservasScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Acción al presionar "Salas Disponibles"
-                    print('Salas Disponibles presionado');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FormsScreen(
+                          onSubmit: (roomCode, bookingToken, date){
+                            print('Datos del formulario : $roomCode, $bookingToken, $date');
+                          },
+                      )
+                      ),
+                    );
                   },
-                  child: Text('Salas Disponibles'),
+                  child: const Text('reserveSearch'),
                 ),
+                
                 SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
