@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () async {
                           String jwt = await GoogleService.getData('idToken');
-                          List<dynamic> respuesta = await HttpRequests.obtenerSalas(jwt);
+                          List<dynamic> respuesta = await ApiRoom.obtenerSalas(jwt);
                           //print('respuesta de obtener salas : $respuesta');
                         },
                         child: const Text('obtenerSalas'),

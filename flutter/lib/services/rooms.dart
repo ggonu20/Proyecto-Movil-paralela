@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:logger/logger.dart';
 
-class HttpRequests {
+class ApiRoom {
   static const String url = "https://api.sebastian.cl";
   static const String var1 = "application/json";
   static final Logger _logger = Logger();
