@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "392687196156",
+    "project_id": "cpyd-seba",
+    "storage_bucket": "cpyd-seba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392687196156:android:9dfb9b665ec0d621d44479",
+        "android_client_info": {
+          "package_name": "cl.sebastian.cpyd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392687196156-6mhp6q0atjlo2lfurvprutggpe2bmjns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cl.sebastian.cpyd",
+            "certificate_hash": "f6f26576b3769b0eb17e4a266028183f3e7e0669"
+          }
+        },
+        {
+          "client_id": "392687196156-ba5k7ksusvogpg4aoo3uav2e8i94iq4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALX0LLEVG1BiXLpSo5hgmiXMh1TGhxSG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392687196156-ba5k7ksusvogpg4aoo3uav2e8i94iq4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
