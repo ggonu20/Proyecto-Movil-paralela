@@ -43,4 +43,13 @@ class GoogleService {
     });
     return data;
   }
+
+  static Future<void> disconnect() async {
+    try {
+      await _googleSignIn.disconnect();
+      _logger.i('Desconexión exitosa');
+    } catch (error) {
+      _logger.e('Error al desconectar: $error');
+    }
+  }
 }

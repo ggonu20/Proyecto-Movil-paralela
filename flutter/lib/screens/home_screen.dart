@@ -1,3 +1,4 @@
+import 'package:cpyd/screens/login_screen.dart';
 import 'package:cpyd/services/google_service.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -44,10 +45,14 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 16), // Espacio entre la imagen y el botón
               ElevatedButton(
                 onPressed: () {
-                  // Lógica a ejecutar cuando se presiona el botón
                   print('Botón presionado');
+                  GoogleService.disconnect();
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
                 },
-                child: Text('Mi Botón'),
+                child: Text('Desconectar Google'),
               ),
             ],
           ),
