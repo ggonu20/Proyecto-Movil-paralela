@@ -39,20 +39,20 @@ class HomeScreen extends StatelessWidget {
             child: Column( 
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                    ClipOval(
-                      child: FutureBuilder<String>(
-                        future: GoogleService.getData('foto'),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.done) {
-                            return Image.network('${snapshot.data}');
-                          } else if (snapshot.hasError) {
-                            return const Icon(Icons.error);
-                          } else {
-                            return const CircularProgressIndicator();
-                          }
-                        },
+                      ClipOval(
+                        child: FutureBuilder<String>(
+                          future: GoogleService.getData('foto'),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              return Image.network('${snapshot.data}');
+                            } else if (snapshot.hasError) {
+                              return const Icon(Icons.error);
+                            } else {
+                              return const CircularProgressIndicator();
+                            }
+                          },
+                        ),
                       ),
-                    ),
                   const SizedBox(height: 16), // Espacio entre la imagen y el botón
                       //Boton desconectar
                       ElevatedButton(
