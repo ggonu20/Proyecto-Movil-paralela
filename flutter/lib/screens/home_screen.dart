@@ -24,20 +24,33 @@ class HomeScreen extends StatelessWidget {
                   }
                 })),
         body: Center(
-          child: ClipOval(
-            child: FutureBuilder<String>(
-                future: GoogleService.getData('foto'),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return Image.network('${snapshot.data}');
-                  } else if (snapshot.hasError) {
-                    return const Icon(Icons.error);
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                }),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipOval(
+                child: FutureBuilder<String>(
+                  future: GoogleService.getData('foto'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Image.network('${snapshot.data}');
+                    } else if (snapshot.hasError) {
+                      return const Icon(Icons.error);
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
+              ),
+              SizedBox(height: 16), // Espacio entre la imagen y el botón
+              ElevatedButton(
+                onPressed: () {
+                  // Lógica a ejecutar cuando se presiona el botón
+                  print('Botón presionado');
+                },
+                child: Text('Mi Botón'),
+              ),
+            ],
           ),
-          
         ),
         bottomNavigationBar: Container(
           color: Colors.blue, // Puedes ajustar el color según tu diseño
