@@ -37,6 +37,20 @@ class HomeScreen extends StatelessWidget {
                   }
                 }),
           ),
-        ));
+          
+        ),
+        bottomNavigationBar: Container(
+          color: Colors.blue, // Puedes ajustar el color según tu diseño
+          height: 60.0, // Ajusta la altura según tus necesidades
+            child: const Center(
+              child:  Text(
+                'Este es el pie de página',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+        ),);
   }
 }
