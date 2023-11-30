@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "384543085131",
-    "firebase_url": "https://apirest-paralela-default-rtdb.firebaseio.com",
-    "project_id": "apirest-paralela",
-    "storage_bucket": "apirest-paralela.appspot.com"
+    "project_number": "618762236143",
+    "project_id": "android-1198e",
+    "storage_bucket": "android-1198e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:384543085131:android:969cf23c253af7703b73ce",
+        "mobilesdk_app_id": "1:618762236143:android:d4ad9fc41b051174fd2b1a",
         "android_client_info": {
           "package_name": "cl.sebastian.cpyd"
         }
       },
       "oauth_client": [
         {
-          "client_id": "384543085131-imadc9ogklu017251cbm43v2fftjm08b.apps.googleusercontent.com",
+          "client_id": "618762236143-2n45g6rfme122vbd864cc02b04td86b1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "cl.sebastian.cpyd",
-            "certificate_hash": "c0ee2e433ba6b08442388d6ec4d14673a0c53c31"
+            "certificate_hash": "7b37e15f6c90eea4f4f91e204665ad73398fa569"
           }
         },
         {
-          "client_id": "384543085131-3dnlhlobpno3gqqmp8gp3aarise4j8r6.apps.googleusercontent.com",
+          "client_id": "618762236143-m0vrv974mung4t0bqofa45r95gat87kk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC0shWtzpq3XgNFFJemMoGF2tchGZIzmyg"
+          "current_key": "AIzaSyA-dtZaYO-DljryRVGw2lC3uxIn__bWmD0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "384543085131-3dnlhlobpno3gqqmp8gp3aarise4j8r6.apps.googleusercontent.com",
+              "client_id": "618762236143-m0vrv974mung4t0bqofa45r95gat87kk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
