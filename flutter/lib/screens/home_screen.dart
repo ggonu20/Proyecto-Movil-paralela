@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:cpyd/screens/login_screen.dart';
 import 'package:cpyd/services/google_service.dart';
+import 'package:cpyd/screens/reservas_screen.dart';
+import 'package:cpyd/services/rooms.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+
+
 
 class HomeScreen extends StatelessWidget {
   static final Logger _logger = Logger();
@@ -54,6 +60,29 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: Text('Desconectar Google'),
               ),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  String jwt = await GoogleService.getData('idToken');
+                  List<dynamic> respuesta = await HttpRequests.obtenerSalas(jwt);
+                  //print('respuesta de obtener salas : $respuesta');
+                },
+                child: Text('obtenerSalas'),
+                ),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                // Acción al presionar "Reservas"
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ReservasScreen(),
+                  ),
+                );
+              },
+
+                child: Text('Reservas'),
+                ),
             ],
           ),
         ),
