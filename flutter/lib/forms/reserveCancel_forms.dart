@@ -28,11 +28,11 @@ class _ReserveCancelFormState extends State<ReserveCancelForm> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala'),
+              decoration: const InputDecoration(labelText: 'Código de Sala',hintText: 'hola mundo'),
             ),
             TextField(
               controller: bookingTokenController,
-              decoration: const InputDecoration(labelText: 'Token'),
+              decoration: const InputDecoration(labelText: 'Token',hintText: 'hola mundo'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(

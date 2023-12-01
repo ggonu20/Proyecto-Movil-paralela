@@ -42,12 +42,12 @@ class _FormsScreenState extends State<FormsreserveInfo> {
           children: [
             TextFormField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala'),
+              decoration: const InputDecoration(labelText: 'Código de Sala',hintText: 'hola mundo'),
               validator: roomCodeValidator,
             ),
             TextFormField(
               controller: startController,
-              decoration: const InputDecoration(labelText: 'Inicio'),
+              decoration: const InputDecoration(labelText: 'Fecha',hintText: 'hola mundo'),
               validator: startValidator,
             ),
             const SizedBox(height: 16),
