@@ -19,28 +19,28 @@ class _FormsScreenState extends State<FormsreserveRequest> {
 
   String? roomCodeValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el Room Code';
+      return 'Ingrese el Código de Sala';
     }
     return null;
   }
 
   String? dateValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el date';
+      return 'Ingrese la fecha';
     }
     return null;
   }
 
   String? startValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el start';
+      return 'Ingrese el inicio';
     }
     return null;
   }
 
   String? quantityValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el quantity';
+      return 'Ingrese la Cantidad';
     }
     return null;
   }
@@ -58,22 +58,22 @@ class _FormsScreenState extends State<FormsreserveRequest> {
           children: [
             TextFormField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Room Code'),
+              decoration: const InputDecoration(labelText: 'Código de Sala'),
               validator: roomCodeValidator,
             ),
             TextFormField(
               controller: dateController,
-              decoration: const InputDecoration(labelText: 'Date'),
+              decoration: const InputDecoration(labelText: 'Fecha'),
               validator: dateValidator,
             ),
             TextFormField(
               controller: startController,
-              decoration: const InputDecoration(labelText: 'Start'),
+              decoration: const InputDecoration(labelText: 'Inicio'),
               validator: startValidator,
             ),
             TextFormField(
               controller: quantityController,
-              decoration: const InputDecoration(labelText: 'Quantity'),
+              decoration: const InputDecoration(labelText: 'Cantidad'),
               validator: quantityValidator,
             ),
             const SizedBox(height: 16),

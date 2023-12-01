@@ -17,14 +17,14 @@ class _FormsScreenState extends State<FormsreserveInfo> {
 
   String? roomCodeValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el Room Code';
+      return 'Ingrese el Código de Sala';
     }
     return null;
   }
 
   String? startValidator(String? value){
     if (value == null || value.isEmpty){
-      return 'Ingrese el start';
+      return 'Ingrese el Inicio';
     }
     return null;
   }
@@ -42,12 +42,12 @@ class _FormsScreenState extends State<FormsreserveInfo> {
           children: [
             TextFormField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Room Code'),
+              decoration: const InputDecoration(labelText: 'Código de Sala'),
               validator: roomCodeValidator,
             ),
             TextFormField(
               controller: startController,
-              decoration: const InputDecoration(labelText: 'Start'),
+              decoration: const InputDecoration(labelText: 'Inicio'),
               validator: startValidator,
             ),
             const SizedBox(height: 16),

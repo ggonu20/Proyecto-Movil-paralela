@@ -66,8 +66,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         child: const Text('Desconectar Google'),
                       ),
-                  espacio(), // Espacio entre la boton y boton
-                      //Boton obtenerSalas prueba
+                      /*//Boton obtenerSalas prueba
                       ElevatedButton(
                         onPressed: () async {
                           String jwt = await GoogleService.getData('idToken');
@@ -75,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                           //print('respuesta de obtener salas : $respuesta');
                         },
                         child: const Text('obtenerSalas'),
-                      ),
+                      ),*/
                   espacio(), // Espacio entre la boton y boton
                       //Boton reservas_screen
                       ElevatedButton(

@@ -30,15 +30,15 @@ class _FormsScreenState extends State<FormsreserveSearch> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Room Code'),
+              decoration: const InputDecoration(labelText: 'Código de Sala'),
             ),
             TextField(
               controller: bookingTokenController,
-              decoration: const InputDecoration(labelText: 'Booking Token'),
+              decoration: const InputDecoration(labelText: 'Token'),
             ),
             TextField(
               controller: dateController,
-              decoration: const InputDecoration(labelText: 'Date'),
+              decoration: const InputDecoration(labelText: 'Fecha'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(

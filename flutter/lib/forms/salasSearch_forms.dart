@@ -27,7 +27,7 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Room Code'),
+              decoration: const InputDecoration(labelText: 'Código de Sala'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
