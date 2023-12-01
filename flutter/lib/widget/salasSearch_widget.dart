@@ -11,15 +11,25 @@ class SalasSWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sala encontrada'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Codigo ${sala["code"]}'),
-          Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-          Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-          Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
-        ],
-      ),
-    );
-  }
+      body: ListView.builder(
+        itemCount: sala.length,
+        itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text('Sala ${sala["name"]}'),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Text('Codigo ${sala["code"]}'),
+                Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
+                Text('Nombre: ${sala["name"] ?? "No especificada"}'),
+                Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
+                ],
+            ),
+          ),
+        );
+      },
+    ),
+  );
+}
 }
