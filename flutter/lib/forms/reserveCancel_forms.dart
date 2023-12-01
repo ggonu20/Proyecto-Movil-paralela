@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/services/google_service.dart';
 import 'package:cpyd/services/reservas.dart';
+import 'package:cpyd/widget/reserveCancel_widget.dart';
 
 class ReserveCancelForm extends StatefulWidget {
-  final Function(String, String) onSubmit;
+  final Function(String) onSubmit;
 
-  const ReserveCancelForm({Key? key, required this.onSubmit}) : super(key: key);
+  const ReserveCancelForm({super.key, required this.onSubmit});
 
   @override
   _ReserveCancelFormState createState() => _ReserveCancelFormState();
 }
 
 class _ReserveCancelFormState extends State<ReserveCancelForm> {
-  final TextEditingController roomCodeController = TextEditingController();
-  final TextEditingController bookingTokenController = TextEditingController();
+  final TextEditingController tokenController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,33 +27,26 @@ class _ReserveCancelFormState extends State<ReserveCancelForm> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala', helperText: 'Ejemplo: B01 '),
-            ),
-            TextField(
-              controller: bookingTokenController,
-              decoration: const InputDecoration(labelText: 'Token', helperText: 'Ejemplo: 04970361-579d-47a1-bef5-efb7fd89d749'),
+              controller: tokenController,
+              decoration: const InputDecoration(
+                  labelText: 'Token',
+                  helperText: 'Ejemplo: 04970361-579d-47a1-bef5-efb7fd89d749'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                String roomCode = roomCodeController.text;
-                String bookingToken = bookingTokenController.text;
-
+                String token = tokenController.text;
                 // Llamada a la función onSubmit del widget padre
-                widget.onSubmit(roomCode, bookingToken);
-
+                widget.onSubmit(token);
                 String jwt = await GoogleService.getData('idToken');
-
-                await ApiReserve.reserveCancel(jwt, bookingToken);
-
-                // Mostrar el widget ReservasWidget después de enviar los datos
-                /*Navigator.push(
+                bool isCancellationSuccessful = await ApiReserve.reserveCancel(jwt, token);
+                // ignore: use_build_context_synchronously
+                Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ReservasWidget(reservas: respuesta),
-                  ),
-                );*/
+                   MaterialPageRoute(
+                    builder: (context) => ReserveCWidget(isSuccess: isCancellationSuccessful)
+                    )
+                    );
               },
               child: const Text('Cancelar Reserva'),
             ),
@@ -63,4 +56,3 @@ class _ReserveCancelFormState extends State<ReserveCancelForm> {
     );
   }
 }
-

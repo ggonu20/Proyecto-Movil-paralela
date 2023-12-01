@@ -1,38 +1,22 @@
+// reserveCancel_widget.dart
 import 'package:flutter/material.dart';
 
 class ReserveCWidget extends StatelessWidget {
-  final List<dynamic> salas;
+  final bool isSuccess;
 
-  const ReserveCWidget({super.key, required this.salas});
+  const ReserveCWidget({Key? key, required this.isSuccess}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reservas cancelada'),
+        title: isSuccess ? const Text('Reserva Cancelada') : const Text('Error al Cancelar Reserva'),
       ),
-              //cambiar body para adaptar a lo que entrega al crear la cancelar reserva, eh si funciona deberia crear un mensajito que diga reserva cancelada
-              body: ListView.builder(
-                itemCount: salas.length,
-                itemBuilder: (context, index) {
-                  Map<String, dynamic> sala = salas[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text('Codigo ${sala["code"]}'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-                            Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-                            Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
-                            // Otros detalles según sea necesario
-                          ],
-                        ),
-                        // Agregar aquí cualquier otra información que desees mostrar
-                      ),
-                    );
-                },
-              ),
+      body: Center(
+        child: isSuccess
+            ? const Text('La reserva ha sido cancelada exitosamente.')
+            : const Text('Hubo un error al intentar cancelar la reserva.'),
+      ),
     );
   }
 }

@@ -79,7 +79,7 @@ class ApiReserve {
           }
 
       //Funcion delete cancelar reserva con token
-         static Future<void> reserveCancel(String jwt, String token) async {
+         static Future<bool> reserveCancel(String jwt, String token) async {
             Uri url_ = Uri.parse('$url/booking/v1/reserve/$token/cancel');
             Map<String, String> headers = {
               'accept': var1,
@@ -89,13 +89,16 @@ class ApiReserve {
 
             try {
               final response = await http.delete(url_, headers: headers);
-              if (response.statusCode == 200) {
+              if (response.statusCode >= 200 && response.statusCode < 400) {
               _logger.i('Reserva cancelada exitosamente');
+              return true;
               } else {
                 _logger.e('Error al cancelar la reserva. Código de estado: ${response.statusCode}');
+                return false;
               }
             } catch (error) {
               _logger.e('Error al cancelar la reserva: $error');
+              return false;
             }
           }
 }
