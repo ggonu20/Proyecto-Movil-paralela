@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cpyd/forms/reserveSearch_forms.dart'; //importa forms
+import 'package:cpyd/forms/reserveRequest_forms.dart'; //importa forms
 
 
 class ReservasScreen extends StatelessWidget {
@@ -39,9 +40,16 @@ class ReservasScreen extends StatelessWidget {
             const SizedBox(height: 16), //espacio
                   //Crear reserva /v1/reserve/request
                   ElevatedButton(
-                    onPressed: () {
-                      // Acción al presionar "Crear Reserva"
-                      print('Crear Reserva presionado');
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FormsreserveRequest(
+                            onSubmit: (roomCode, date, start, quantity) async{
+                            },
+                          )
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(71, 123, 212, 126), 
