@@ -32,10 +32,18 @@ class SalasScreen extends StatelessWidget {
                         },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+                    padding: EdgeInsets.symmetric(horizontal: 75.0, vertical: 20.0), // Espaciado interno
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                      ),
                   ),
-                  child: const Text('Buscar sala por codigo'),
+                  child: const Text('Buscar Sala por Código',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-          const SizedBox(height: 16), //espacio
+                ),
+          const SizedBox(height: 50), //espacio
                 ElevatedButton(
                   onPressed: () async {
                       String jwt = await GoogleService.getData('idToken');
@@ -60,8 +68,16 @@ class SalasScreen extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+                    padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 20.0), // Espaciado interno
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                      ),
                   ),
-                  child: const Text('Mostrar salas'),
+                  child: const Text('Mostrar Salas',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 ),
           const SizedBox(height: 16), //espacio
           ]

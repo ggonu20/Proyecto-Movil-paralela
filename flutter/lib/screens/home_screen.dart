@@ -54,26 +54,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                   espacio(), // Espacio entre la boton y boton
-                      //Boton desconectar
-                      ElevatedButton(
-                        onPressed: () {
-                          GoogleService.disconnect();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()));
-                        },
-                        child: const Text('Desconectar Google'),
-                      ),
-                      /*//Boton obtenerSalas prueba
-                      ElevatedButton(
-                        onPressed: () async {
-                          String jwt = await GoogleService.getData('idToken');
-                          List<dynamic> respuesta = await ApiSalas.obtenerSalas(jwt);
-                          //print('respuesta de obtener salas : $respuesta');
-                        },
-                        child: const Text('obtenerSalas'),
-                      ),*/
                   espacio(), // Espacio entre la boton y boton
                       //Boton reservas_screen
                       ElevatedButton(
@@ -83,6 +63,12 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => const ReservasScreen(),
                             ),);},
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0), // Espaciado interno
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                          ),
+                        ),
                         child: const Text('Reservas'),
                       ),
                   espacio(), // Espacio entre la boton y boton
@@ -94,7 +80,36 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => const SalasScreen(),
                             ),);},
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0), // Espaciado interno
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                          ),
+                        ),
                         child: const Text('Salas'),
+                      ),
+                    SizedBox(height: 300), // Espacio entre la boton y boton
+                  //Boton desconectar
+                      ElevatedButton(
+                        onPressed: () {
+                          GoogleService.disconnect();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 214, 149, 74),
+                          padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 20.0), // Espaciado interno
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                          ),
+                        ),
+                        child: const Text('Mostrar Salas',
+                        style: TextStyle(
+                          color: Colors.white,
+                          ),
+                        ),
                       ),
               ],
             ),
@@ -104,7 +119,7 @@ class HomeScreen extends StatelessWidget {
             height: 60.0, // Ajusta la altura según tus necesidades
               child: const Center(
                 child:  Text(
-                  'Este es el pie de página',
+                  'Universidad Tecnológica Metropolitana',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
