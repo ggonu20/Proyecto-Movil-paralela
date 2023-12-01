@@ -33,12 +33,10 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
             ElevatedButton(
               onPressed: () async {
                 String roomCode = roomCodeController.text;
-
                 // Llamada a la función onSubmit del widget padre
                 widget.onSubmit(roomCode);
-
+                
                 String jwt = await GoogleService.getData('idToken');
-
                 List<dynamic> respuesta = await ApiSalas.obtenerSalasCodigo(jwt, roomCode);
 
                 // Mostrar el widget SalasWidget después de enviar los datos

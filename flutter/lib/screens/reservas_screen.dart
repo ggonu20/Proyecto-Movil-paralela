@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/forms/reserveSearch_forms.dart'; //importa forms
 import 'package:cpyd/forms/reserveRequest_forms.dart'; //importa forms
+import 'package:cpyd/forms/reserveInfo_forms.dart'; //importa forms para infoReserva()
+import 'package:cpyd/forms/reserveCancel_form.dart'; //importa forms para reserveCancel()
 
 
 class ReservasScreen extends StatelessWidget {
@@ -56,30 +58,44 @@ class ReservasScreen extends StatelessWidget {
                     ),
                     child: const Text('Crear Reserva'),
                   ),
-            
-            
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Acción al presionar "buscar reserva por código"
-                print('Buscar Reservas por codigo presionado');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
-              ),
-              child: const Text('Buscar Reserva por codigo'),
-            ),
+                  //Info reserva /v1/reserve/$roomCode/schedule/$isoDate
+                  ElevatedButton(
+                    onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FormsreserveInfo(
+                                onSubmit: (roomCode, start) async{
+                                },
+                              )
+                            ),
+                          );
+                        },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+                    ),
+                    child: const Text('Buscar Reserva por codigo'),
+                  ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Acción al presionar "eliminar reserva"
-                print('Eliminar Reserva presionado');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(70, 206, 28, 28), // Cambia el color de fondo del botón
-              ),
-              child: const Text('Eliminar Reserva'),
-            ),
+                  // Cancelar reserva /v1/reserve/$token/cancel
+                  ElevatedButton(
+                    onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReserveCancelForm(
+                                onSubmit: (roomCode, bookingToken) async{
+                                },
+                              )
+                            ),
+                          );
+                        },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(70, 206, 28, 28), // Cambia el color de fondo del botón
+                    ),
+                    child: const Text('Eliminar Reserva'),
+                  ),
             const SizedBox(height: 16),
             ]
       ),

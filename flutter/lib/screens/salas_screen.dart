@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cpyd/services/salas.dart';// importar rooms que tiene las funciones obtenerSalas(String jwt) async, 
 import 'package:cpyd/services/google_service.dart'; //importar google_services que tiene las funciones login(), getData(), disconnect()
 import 'package:cpyd/widget/salas_widget.dart';
+import 'package:cpyd/forms/salasSearch_forms.dart'; //importa fomrs para obtenerSalasCodigo()
 
 class SalasScreen extends StatelessWidget {
   const SalasScreen({super.key});
@@ -17,16 +18,24 @@ class SalasScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
                 ElevatedButton(
-                  onPressed: () {
-                    // Acción al presionar "buscar sala por codigo"
-                    print('Buscar sala por codigo');
-                  },
+                  onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SalasSearchForm(
+                                onSubmit: (roomCode) async{
+                                  
+                                },
+                              )
+                            ),
+                          );
+                        },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
                   ),
                   child: const Text('Buscar sala por codigo'),
                 ),
-            const SizedBox(height: 16),
+          const SizedBox(height: 16), //espacio
                 ElevatedButton(
                   onPressed: () async {
                       String jwt = await GoogleService.getData('idToken');
@@ -54,8 +63,8 @@ class SalasScreen extends StatelessWidget {
                   ),
                   child: const Text('Mostrar salas'),
                 ),
-            const SizedBox(height: 16),
-            ]
+          const SizedBox(height: 16), //espacio
+          ]
       ),
     ),
     );
