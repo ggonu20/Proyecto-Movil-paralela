@@ -9,7 +9,7 @@ class SalasSWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reservas encontradas'),
+        title: const Text('Salas encontradas'),
       ),
               //cambiar body para adaptar a lo que entrega al buscar salas por codigo
               body: ListView.builder(
@@ -22,9 +22,11 @@ class SalasSWidget extends StatelessWidget {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            //Text('Ubicación: ${sala["code"] ?? "No especificada"}'),
                             Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
                             Text('Nombre: ${sala["name"] ?? "No especificada"}'),
                             Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
+                            Text('Descripción: ${sala["description"] ?? "No especificada"}'),
                             // Otros detalles según sea necesario
                           ],
                         ),

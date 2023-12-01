@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/services/google_service.dart';
 import 'package:cpyd/services/salas.dart';
+import 'package:cpyd/widget/salasSearch_widget.dart';
 
 class SalasSearchForm extends StatefulWidget {
   final Function(String) onSubmit;
@@ -27,7 +28,7 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala',hintText: 'hola mundo'),
+              decoration: const InputDecoration(labelText: 'Código de Sala', helperText: 'Ejemplo: B01'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -39,13 +40,13 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
                 String jwt = await GoogleService.getData('idToken');
                 List<dynamic> respuesta = await ApiSalas.obtenerSalasCodigo(jwt, roomCode);
 
-                // Mostrar el widget SalasWidget después de enviar los datos
-                /*Navigator.push(
+                //Mostrar el widget SalasWidget después de enviar los datos
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SalasWidget(salas: respuesta),
+                    builder: (context) => SalasSWidget(salas: respuesta),
                   ),
-                );*/
+                );
               },
               child: const Text('Buscar Sala'),
             ),
