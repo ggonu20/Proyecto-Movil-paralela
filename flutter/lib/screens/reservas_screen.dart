@@ -1,7 +1,11 @@
 // reservas_screen.dart
 
+import 'package:cpyd/widget/reservas_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cpyd/forms/reservas_forms.dart'; //importa forms
+import 'package:cpyd/services/reservas.dart'; //importar reservas
+import 'package:cpyd/services/google_service.dart'; //importar google service
+import 'package:cpyd/widget/reservas_widget.dart'; //importar reservas widget
 
 class ReservasScreen extends StatelessWidget {
   const ReservasScreen({super.key});
@@ -17,13 +21,12 @@ class ReservasScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => FormsScreen(
-                      onSubmit: (roomCode, bookingToken, date){
-                        print('Datos del formulario : $roomCode, $bookingToken, $date');
+                      onSubmit: (roomCode, bookingToken, date) async{
                       },
                     )
                   ),
@@ -32,7 +35,7 @@ class ReservasScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(71, 123, 212, 126), 
               ),
-              child: Text('Buscar Reserva'),
+              child: const Text('Buscar Reserva'),
             ),
             SizedBox(height: 16),
             ElevatedButton(

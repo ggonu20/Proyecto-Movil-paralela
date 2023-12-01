@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cpyd/widget/reservas_widget.dart'; //importar reservas widget
+import 'package:cpyd/services/google_service.dart'; //importar google service
+import 'package:cpyd/services/reservas.dart'; //importar reservas
 
 class FormsScreen extends StatefulWidget {
   final Function(String, String, String) onSubmit;
@@ -18,7 +21,7 @@ class _FormsScreenState extends State<FormsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ingrese Datos'),
+        title: const Text('Ingrese Datos'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -27,30 +30,44 @@ class _FormsScreenState extends State<FormsScreen> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: InputDecoration(labelText: 'Room Code'),
+              decoration: const InputDecoration(labelText: 'Room Code'),
             ),
             TextField(
               controller: bookingTokenController,
-              decoration: InputDecoration(labelText: 'Booking Token'),
+              decoration: const InputDecoration(labelText: 'Booking Token'),
             ),
             TextField(
               controller: dateController,
-              decoration: InputDecoration(labelText: 'Date'),
+              decoration: const InputDecoration(labelText: 'Date'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 String roomCode = roomCodeController.text;
                 String bookingToken = bookingTokenController.text;
                 String date = dateController.text;
 
                 // Llamada a la función onSubmit del widget padre
                 widget.onSubmit(roomCode, bookingToken, date);
+                String jwt = await GoogleService.getData('idToken');
+                            //mapeamos el requestBody con los datos que sacamos del formulario
+                            Map<String, dynamic> requestBody = {
+                              'roomCode': roomCode,
+                              'bookingToken': bookingToken,
+                              'date': date,
+                            };
+                List<dynamic> respuesta = await ApiReserve.reserveSearch(jwt, requestBody);
 
-                // Cerrar el formulario después de enviar los datos
-                Navigator.pop(context);
+                // Mostrar el widget ReservasWidget después de enviar los datos
+                // ignore: use_build_context_synchronously
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReservasWidget(reservas: respuesta),
+                  ),
+                );
               },
-              child: Text('Enviar Datos'),
+              child: const Text('Enviar Datos'),
             ),
           ],
         ),
