@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/services/google_service.dart'; //importar google service
 import 'package:cpyd/services/reservas.dart'; //importar reservas
+import 'package:cpyd/widget/reserveInfo_widget.dart';
 
 class FormsreserveInfo extends StatefulWidget {
   final Function(String, String) onSubmit;
@@ -15,15 +16,15 @@ class _FormsScreenState extends State<FormsreserveInfo> {
   final TextEditingController roomCodeController = TextEditingController();
   final TextEditingController startController = TextEditingController();
 
-  String? roomCodeValidator(String? value){
-    if (value == null || value.isEmpty){
+  String? roomCodeValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese el Código de Sala';
     }
     return null;
   }
 
-  String? startValidator(String? value){
-    if (value == null || value.isEmpty){
+  String? startValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese el Inicio';
     }
     return null;
@@ -42,12 +43,14 @@ class _FormsScreenState extends State<FormsreserveInfo> {
           children: [
             TextFormField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala',hintText: 'hola mundo'),
+              decoration: const InputDecoration(
+                  labelText: 'Código de Sala', helperText: 'Ejemplo: B01'),
               validator: roomCodeValidator,
             ),
             TextFormField(
               controller: startController,
-              decoration: const InputDecoration(labelText: 'Fecha',hintText: 'hola mundo'),
+              decoration: const InputDecoration(
+                  labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
               validator: startValidator,
             ),
             const SizedBox(height: 16),
@@ -60,15 +63,16 @@ class _FormsScreenState extends State<FormsreserveInfo> {
                 widget.onSubmit(roomCode, start);
                 String jwt = await GoogleService.getData('idToken');
                 List<dynamic> respuesta = await ApiReserve.infoReserva(jwt, roomCode, start);
+                print(respuesta);
 
                 // Mostrar el widget ReservasWidget después de enviar los datos
                 // ignore: use_build_context_synchronously
-                /*Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ReservasWidget(reservas: respuesta),
+                    builder: (context) => ReserveIWidget(reservas: respuesta),
                   ),
-                );*/
+                );
               },
               child: const Text('Enviar Datos'),
             ),

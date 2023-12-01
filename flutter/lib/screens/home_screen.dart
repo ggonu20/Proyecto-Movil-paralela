@@ -3,7 +3,6 @@ import 'package:cpyd/screens/reservas_screen.dart'; //importar screen reservas
 import 'package:cpyd/screens/salas_screen.dart'; //importar screen salas
 
 import 'package:cpyd/services/google_service.dart'; //importar google_services que tiene las funciones login(), getData(), disconnect()
-import 'package:cpyd/services/salas.dart';// importar rooms que tiene las funciones obtenerSalas(String jwt) async, 
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';

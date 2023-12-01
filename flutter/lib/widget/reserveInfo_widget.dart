@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ReserveIWidget extends StatelessWidget {
-  final List<dynamic> salas;
+  final List<dynamic> reservas;
 
-  const ReserveIWidget({super.key, required this.salas});
+  const ReserveIWidget({super.key, required this.reservas});
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +13,21 @@ class ReserveIWidget extends StatelessWidget {
       ),
               //cambiar body para adaptar a lo que entrega al crear la reserva
               body: ListView.builder(
-                itemCount: salas.length,
+                itemCount: reservas.length,
                 itemBuilder: (context, index) {
-                  Map<String, dynamic> sala = salas[index];
+                  Map<String, dynamic> sala = reservas[index];
                     return Card(
                       child: ListTile(
-                        title: Text('Codigo ${sala["code"]}'),
+                        title: Text('Codigo ${sala["roomCode"]}'),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-                            Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-                            Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
-                            // Otros detalles según sea necesario
+                            Text('Token: ${sala["token"] ?? "No especificada"}'),
+                            Text('Email: ${sala["userEmail"] ?? "No especificada"}'),
+                            Text('Inicio: ${sala["start"] ?? "No especificada"}'),
+                            Text('Fin: ${sala["end"] ?? "No especificada"}'),
                           ],
                         ),
-                        // Agregar aquí cualquier otra información que desees mostrar
                       ),
                     );
                 },

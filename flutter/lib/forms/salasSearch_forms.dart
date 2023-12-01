@@ -39,7 +39,7 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
                 
                 String jwt = await GoogleService.getData('idToken');
                 Map<String, dynamic> respuesta = await ApiSalas.obtenerSalasCodigo(jwt, roomCode);
-                print('Salas obtenidas: $respuesta');
+                //print('Salas obtenidas: $respuesta');
 
                 //Mostrar el widget SalasWidget después de enviar los datos
                 // ignore: use_build_context_synchronously
