@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cpyd/forms/reserveSearch_forms.dart'; //importa forms
 import 'package:cpyd/forms/reserveRequest_forms.dart'; //importa forms
 import 'package:cpyd/forms/reserveInfo_forms.dart'; //importa forms para infoReserva()
-import 'package:cpyd/forms/reserveCancel_form.dart'; //importa forms para reserveCancel()
+import 'package:cpyd/forms/reserveCancel_forms.dart'; //importa forms para reserveCancel()
 
 
 class ReservasScreen extends StatelessWidget {

@@ -12,6 +12,7 @@ class FormsreserveRequest extends StatefulWidget {
 }
 
 class _FormsScreenState extends State<FormsreserveRequest> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController roomCodeController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
   final TextEditingController startController = TextEditingController();
@@ -53,61 +54,67 @@ class _FormsScreenState extends State<FormsreserveRequest> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala'),
-              validator: roomCodeValidator,
-            ),
-            TextFormField(
-              controller: dateController,
-              decoration: const InputDecoration(labelText: 'Fecha'),
-              validator: dateValidator,
-            ),
-            TextFormField(
-              controller: startController,
-              decoration: const InputDecoration(labelText: 'Inicio'),
-              validator: startValidator,
-            ),
-            TextFormField(
-              controller: quantityController,
-              decoration: const InputDecoration(labelText: 'Cantidad'),
-              validator: quantityValidator,
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                String roomCode = roomCodeController.text;
-                String date = dateController.text;
-                String start = startController.text;
-                String quantity = quantityController.text;
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                controller: roomCodeController,
+                decoration: const InputDecoration(labelText: 'Código de Sala'),
+                validator: roomCodeValidator,
+              ),
+              TextFormField(
+                controller: dateController,
+                decoration: const InputDecoration(labelText: 'Fecha'),
+                validator: dateValidator,
+              ),
+              TextFormField(
+                controller: startController,
+                decoration: const InputDecoration(labelText: 'Inicio'),
+                validator: startValidator,
+              ),
+              TextFormField(
+                controller: quantityController,
+                decoration: const InputDecoration(labelText: 'Cantidad'),
+                validator: quantityValidator,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    String roomCode = roomCodeController.text;
+                    String date = dateController.text;
+                    String start = startController.text;
+                    String quantity = quantityController.text;
 
-                // Llamada a la función onSubmit del widget padre
-                widget.onSubmit(roomCode, date, start, quantity);
-                String jwt = await GoogleService.getData('idToken');
-                            //mapeamos el requestBody con los datos que sacamos del formulario
-                            Map<String, dynamic> requestBody = {
-                              'roomCode': roomCode,
-                              'date': date,
-                              'start': start,
-                              "quantity": quantity,
-                            };
-                List<dynamic> respuesta = await ApiReserve.reserveRequest(jwt, requestBody);
+                    // Llamada a la función onSubmit del widget padre
+                    widget.onSubmit(roomCode, date, start, quantity);
+                    String jwt = await GoogleService.getData('idToken');
+                    //mapeamos el requestBody con los datos que sacamos del formulario
+                    Map<String, dynamic> requestBody = {
+                      'roomCode': roomCode,
+                      'date': date,
+                      'start': start,
+                      "quantity": quantity,
+                    };
+                    List<dynamic> respuesta = await ApiReserve.reserveRequest(jwt, requestBody);
 
-                // Mostrar el widget ReservasWidget después de enviar los datos
-                // ignore: use_build_context_synchronously
-                /*Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReservasWidget(reservas: respuesta),
-                  ),
-                );*/
-              },
-              child: const Text('Enviar Datos'),
-            ),
-          ],
+                    // Mostrar el widget ReservasWidget después de enviar los datos
+                    // ignore: use_build_context_synchronously
+                    /*Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ReservasWidget(reservas: respuesta),
+                      ),
+                    );*/
+                  }
+                },
+                child: const Text('Enviar Datos'),
+              ),
+            ],
+          ),
         ),
       ),
     );

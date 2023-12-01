@@ -1,21 +1,32 @@
-import 'dart:convert' as convert;
-
-import 'package:http/http.dart' as http;
-
-void main(List<String> arguments) async {
-  // This example uses the Google Books API to search for books about http.
-  // https://developers.google.com/books/docs/overview
-  var url =
-      Uri.https('www.googleapis.com', '/books/v1/volumes', {'q': '{http}'});
-
-  // Await the http get response, then decode the json-formatted response.
-  var response = await http.get(url);
-  if (response.statusCode == 200) {
-    var jsonResponse =
-        convert.jsonDecode(response.body) as Map<String, dynamic>;
-    var itemCount = jsonResponse['totalItems'];
-    print('Number of books about http: $itemCount.');
-  } else {
-    print('Request failed with status: ${response.statusCode}.');
+bool _validateForm(String roomCode, String date, String start, String quantity) {
+  // Realiza la validación de cada campo y muestra un mensaje de error si es necesario
+  if (roomCode.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Ingrese el Room Code')),
+    );
+    return false;
   }
+
+  if (date.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Ingrese la fecha')),
+    );
+    return false;
+  }
+
+  if (start.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Ingrese la hora de inicio')),
+    );
+    return false;
+  }
+
+  if (quantity.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Ingrese la cantidad')),
+    );
+    return false;
+  }
+
+  return true;
 }
