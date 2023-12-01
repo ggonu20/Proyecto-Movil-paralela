@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SalasSWidget extends StatelessWidget {
   final Map<String, dynamic> sala;
 
-  const SalasSWidget({super.key, required this.sala});
+  const SalasSWidget({Key? key, required this.sala}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,25 +11,20 @@ class SalasSWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sala encontrada'),
       ),
-      body: ListView.builder(
-        itemCount: sala.length,
-        itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            title: Text('Sala ${sala["name"]}'),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Text('Codigo ${sala["code"]}'),
-                Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-                Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-                Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
-                ],
-            ),
+      body: Card(
+        child: ListTile(
+          title: Text('Código ${sala["code"]}'),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text('Codigo ${sala["code"]}'),
+              Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
+              Text('Nombre: ${sala["name"] ?? "No especificada"}'),
+              Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
+            ],
           ),
-        );
-      },
-    ),
-  );
-}
+        ),
+      ),
+    );
+  }
 }
