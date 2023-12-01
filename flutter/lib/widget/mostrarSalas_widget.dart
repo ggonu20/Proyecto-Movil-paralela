@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SalasWidget extends StatelessWidget {
+class MostrarSalasWidget extends StatelessWidget {
   final List<dynamic> salas;
 
-  const SalasWidget({Key? key, required this.salas}) : super(key: key);
+  const MostrarSalasWidget({super.key, required this.salas});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Salas Disponibles'),
+        title: const Text('Salas Disponibles'),
       ),
       body: ListView.builder(
         itemCount: salas.length,

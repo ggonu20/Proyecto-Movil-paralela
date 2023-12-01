@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/services/salas.dart';// importar rooms que tiene las funciones obtenerSalas(String jwt) async, 
 import 'package:cpyd/services/google_service.dart'; //importar google_services que tiene las funciones login(), getData(), disconnect()
-import 'package:cpyd/widget/salas_widget.dart';
+import 'package:cpyd/widget/mostrarSalas_widget.dart';
 import 'package:cpyd/forms/salasSearch_forms.dart'; //importa fomrs para obtenerSalasCodigo()
 
 class SalasScreen extends StatelessWidget {
@@ -45,7 +45,7 @@ class SalasScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SalasWidget(salas: respuesta),
+                              builder: (context) => MostrarSalasWidget(salas: respuesta),
                             ),
                           );
                         } else {
