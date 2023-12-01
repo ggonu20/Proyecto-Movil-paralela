@@ -1,11 +1,8 @@
 // reservas_screen.dart
 
-import 'package:cpyd/widget/reservas_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:cpyd/forms/reservas_forms.dart'; //importa forms
-import 'package:cpyd/services/reservas.dart'; //importar reservas
-import 'package:cpyd/services/google_service.dart'; //importar google service
-import 'package:cpyd/widget/reservas_widget.dart'; //importar reservas widget
+import 'package:cpyd/forms/reserveSearch_forms.dart'; //importa forms
+
 
 class ReservasScreen extends StatelessWidget {
   const ReservasScreen({super.key});
@@ -20,35 +17,40 @@ class ReservasScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FormsScreen(
-                      onSubmit: (roomCode, bookingToken, date) async{
-                      },
-                    )
+                  //Buscar reservas /booking/v1/reserve/search
+                  ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FormsreserveSearch(
+                            onSubmit: (roomCode, bookingToken, date) async{
+                            },
+                          )
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(71, 123, 212, 126), 
+                    ),
+                    child: const Text('Buscar Reserva'),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(71, 123, 212, 126), 
-              ),
-              child: const Text('Buscar Reserva'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Acción al presionar "Crear Reserva"
-                print('Crear Reserva presionado');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(71, 123, 212, 126), 
-              ),
-              child: Text('Crear Reserva'),
-            ),
-            SizedBox(height: 16),
+            
+            const SizedBox(height: 16), //espacio
+                  //Crear reserva /v1/reserve/request
+                  ElevatedButton(
+                    onPressed: () {
+                      // Acción al presionar "Crear Reserva"
+                      print('Crear Reserva presionado');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(71, 123, 212, 126), 
+                    ),
+                    child: const Text('Crear Reserva'),
+                  ),
+            
+            
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // Acción al presionar "buscar reserva por código"
@@ -57,9 +59,9 @@ class ReservasScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
               ),
-              child: Text('Buscar Reserva por codigo'),
+              child: const Text('Buscar Reserva por codigo'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // Acción al presionar "eliminar reserva"
@@ -68,9 +70,9 @@ class ReservasScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(70, 206, 28, 28), // Cambia el color de fondo del botón
               ),
-              child: Text('Eliminar Reserva'),
+              child: const Text('Eliminar Reserva'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ]
       ),
     ),

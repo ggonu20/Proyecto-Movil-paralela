@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                  const SizedBox(height: 16), // Espacio entre la imagen y el botón
+                  espacio(), // Espacio entre la boton y boton
                       //Boton desconectar
                       ElevatedButton(
                         onPressed: () {
@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         child: const Text('Desconectar Google'),
                       ),
-                  const SizedBox(height: 16), // Espacio entre la boton y boton
+                  espacio(), // Espacio entre la boton y boton
                       //Boton obtenerSalas prueba
                       ElevatedButton(
                         onPressed: () async {
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         child: const Text('obtenerSalas'),
                       ),
-                  const SizedBox(height: 16), // Espacio entre la boton y boton
+                  espacio(), // Espacio entre la boton y boton
                       //Boton reservas_screen
                       ElevatedButton(
                         onPressed: () {
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                             ),);},
                         child: const Text('Reservas'),
                       ),
-                  const SizedBox(height: 16), // Espacio entre la boton y boton
+                  espacio(), // Espacio entre la boton y boton
                       //Boton reservas_screen
                       ElevatedButton(
                         onPressed: () {
@@ -116,4 +116,6 @@ class HomeScreen extends StatelessWidget {
           ),
       );
     }
+
+  SizedBox espacio() => const SizedBox(height: 16);
 }

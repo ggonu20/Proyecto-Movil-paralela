@@ -18,7 +18,7 @@ class ApiReserve {
 
             try {
               final response = await http.post(url_, headers: headers, body: json.encode(requestBody));
-              _logger.d(json.decode(response.body));
+              //_logger.d(json.decode(response.body));  //imprime la respuesta en pantalla
               return json.decode(response.body);
             } catch (error) {
               _logger.e('Error al realizar la busqueda de reserva: $error');

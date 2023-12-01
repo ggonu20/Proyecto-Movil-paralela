@@ -3,16 +3,16 @@ import 'package:cpyd/widget/reservas_widget.dart'; //importar reservas widget
 import 'package:cpyd/services/google_service.dart'; //importar google service
 import 'package:cpyd/services/reservas.dart'; //importar reservas
 
-class FormsScreen extends StatefulWidget {
+class FormsreserveSearch extends StatefulWidget {
   final Function(String, String, String) onSubmit;
 
-  const FormsScreen({Key? key, required this.onSubmit}) : super(key: key);
+  const FormsreserveSearch({super.key, required this.onSubmit});
 
   @override
   _FormsScreenState createState() => _FormsScreenState();
 }
 
-class _FormsScreenState extends State<FormsScreen> {
+class _FormsScreenState extends State<FormsreserveSearch> {
   final TextEditingController roomCodeController = TextEditingController();
   final TextEditingController bookingTokenController = TextEditingController();
   final TextEditingController dateController = TextEditingController();

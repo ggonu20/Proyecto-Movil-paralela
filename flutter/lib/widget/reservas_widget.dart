@@ -17,13 +17,12 @@ class ReservasWidget extends StatelessWidget {
           Map<String, dynamic> reser = reservas[index];
             return Card(
               child: ListTile(
-                title: Text('Codigo ${reser["code"]}'),
+                title: Text('Sala: ${reser["roomCode"]}'),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Token: ${reser["token"] ?? "No especificada"}'),
                     Text('Correo: ${reser["userEmail"] ?? "No especificada"}'),
-                    Text('Codigo de sala: ${reser["roomCode"] ?? "No especificada"}'),
                     Text('Inicio: ${reser["start"] ?? "No especificada"}'),
                     Text('Final: ${reser["end"] ?? "No especificada"}'),
                     // Otros detalles según sea necesario

@@ -22,9 +22,9 @@ class SalasScreen extends StatelessWidget {
                     print('Buscar sala por codigo');
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+                    primary: const Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
                   ),
-                  child: Text('Buscar sala por codigo'),
+                  child: const Text('Buscar sala por codigo'),
                 ),
             const SizedBox(height: 16),
                 ElevatedButton(
@@ -32,6 +32,7 @@ class SalasScreen extends StatelessWidget {
                       String jwt = await GoogleService.getData('idToken');
                       List<dynamic> respuesta = await ApiSalas.obtenerSalas(jwt);
                         if (respuesta.isNotEmpty) {
+                          // ignore: use_build_context_synchronously
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -40,17 +41,18 @@ class SalasScreen extends StatelessWidget {
                           );
                         } else {
                           // Puedes manejar el caso donde no se obtienen salas
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content: Text('No se encontraron salas disponibles.'),
                             ),
                           );
                         }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+                    primary: const Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
                   ),
-                  child: Text('Mostrar salas'),
+                  child: const Text('Mostrar salas'),
                 ),
             const SizedBox(height: 16),
             ]
