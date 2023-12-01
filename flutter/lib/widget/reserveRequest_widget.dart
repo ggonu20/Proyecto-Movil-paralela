@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 
 class ReserveRWidget extends StatelessWidget {
-  final List<dynamic> salas;
+  final List<dynamic> reservas;
 
-  const ReserveRWidget({super.key, required this.salas});
+  const ReserveRWidget({super.key, required this.reservas});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reserva creada'),
+        title: const Text('Reserva creada con exito'),
       ),
               //cambiar body para adaptar a lo que entrega al crear la reserva
               body: ListView.builder(
-                itemCount: salas.length,
+                itemCount: reservas.length,
                 itemBuilder: (context, index) {
-                  Map<String, dynamic> sala = salas[index];
+                  Map<String, dynamic> sala = reservas[index];
                     return Card(
                       child: ListTile(
-                        title: Text('Codigo ${sala["code"]}'),
+                        title: Text('Sala: ${sala["roomCode"]}'),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-                            Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-                            Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
+                            Text('Token de reserva: ${sala["token"] ?? "No especificada"}'),
+                            Text('Mail: ${sala["userEmail"] ?? "No especificada"}'),
+                            Text('Inicio: ${sala["start"] ?? "No especificada"}'),
+                            Text('Termino: ${sala["end"] ?? "No especificada"}'),
                             // Otros detalles según sea necesario
                           ],
                         ),

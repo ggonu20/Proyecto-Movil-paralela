@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/services/google_service.dart'; //importar google service
 import 'package:cpyd/services/reservas.dart'; //importar reservas
+import 'package:cpyd/widget/reserveRequest_widget.dart'; //import widget de respuesta
 
 class FormsreserveRequest extends StatefulWidget {
   final Function(String, String, String, String) onSubmit;
@@ -61,22 +62,22 @@ class _FormsScreenState extends State<FormsreserveRequest> {
             children: [
               TextFormField(
                 controller: roomCodeController,
-                decoration: const InputDecoration(labelText: 'Código de Sala', hintText: 'hola mundo'),
+                decoration: const InputDecoration(labelText: 'Código de Sala', helperText: 'Ejemplo: R01'),
                 validator: roomCodeValidator,
               ),
               TextFormField(
                 controller: dateController,
-                decoration: const InputDecoration(labelText: 'Fecha', hintText: 'hola mundo'),
+                decoration: const InputDecoration(labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
                 validator: dateValidator,
               ),
               TextFormField(
                 controller: startController,
-                decoration: const InputDecoration(labelText: 'Inicio', hintText: 'hola mundo'),
+                decoration: const InputDecoration(labelText: 'Inicio', helperText: 'Ejemplo: 17:00:00'),
                 validator: startValidator,
               ),
               TextFormField(
                 controller: quantityController,
-                decoration: const InputDecoration(labelText: 'Cantidad', hintText: 'hola mundo'),
+                decoration: const InputDecoration(labelText: 'Cantidad', helperText: 'Ejemplo: 1'),
                 validator: quantityValidator,
               ),
               const SizedBox(height: 16),
@@ -99,16 +100,37 @@ class _FormsScreenState extends State<FormsreserveRequest> {
                       "quantity": quantity,
                     };
                     List<dynamic> respuesta = await ApiReserve.reserveRequest(jwt, requestBody);
-
-                    // Mostrar el widget ReservasWidget después de enviar los datos
-                    // ignore: use_build_context_synchronously
-                    /*Navigator.push(
+                    if (respuesta.isNotEmpty){
+                      // Mostrar el widget de respuesta con exito
+                      // ignore: use_build_context_synchronously
+                      Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            ReservasWidget(reservas: respuesta),
-                      ),
-                    );*/
+                            ReserveRWidget(reservas: respuesta),
+                      ),);
+                    } else {
+                      // Hubo un error en la reserva, mostrar un mensaje de error
+                      // ignore: use_build_context_synchronously
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Error en la reserva'),
+                            content: const Text('Hubo un error al realizar la reserva. Inténtelo de nuevo.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Aceptar'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  
                   }
                 },
                 child: const Text('Enviar Datos'),

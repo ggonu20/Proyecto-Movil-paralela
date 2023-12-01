@@ -11,6 +11,7 @@ class ReservasWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Reservas Disponibles'),
       ),
+      
       body: ListView.builder(
         itemCount: reservas.length,
         itemBuilder: (context, index) {

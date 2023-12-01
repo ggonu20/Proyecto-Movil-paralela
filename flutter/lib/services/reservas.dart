@@ -39,9 +39,14 @@ class ApiReserve {
             try {
               final response = await http.post(url_, headers: headers, body: json.encode(requestBody));
               _logger.d(json.decode(response.body));
-              return json.decode(response.body);
+               if (response.statusCode >= 200 && response.statusCode <= 400) {
+                return json.decode(response.body);
+                }else {
+                _logger.e('Error al ingresar la reserva. Código de estado: ${response.statusCode}');
+                return [];
+              }
             } catch (error) {
-              _logger.e('Error al obtener salas: $error');
+              _logger.e('Error al ingresar la reserva: $error');
               // Devolver un mapa vacío en caso de error, puedes ajustarlo según tu lógica
               return [];
             }
