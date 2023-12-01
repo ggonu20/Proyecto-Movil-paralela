@@ -1,40 +1,25 @@
 import 'package:flutter/material.dart';
 
 class SalasSWidget extends StatelessWidget {
-  final List<dynamic> salas;
+  final Map<String, dynamic> sala;
 
-  const SalasSWidget({super.key, required this.salas});
+  const SalasSWidget({super.key, required this.sala});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Salas encontradas'),
+        title: const Text('Sala encontrada'),
       ),
-              //cambiar body para adaptar a lo que entrega al buscar salas por codigo
-              body: ListView.builder(
-                itemCount: salas.length,
-                itemBuilder: (context, index) {
-                  Map<String, dynamic> sala = salas[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text('Codigo ${sala["code"]}'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //Text('Ubicación: ${sala["code"] ?? "No especificada"}'),
-                            Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
-                            Text('Nombre: ${sala["name"] ?? "No especificada"}'),
-                            Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
-                            Text('Descripción: ${sala["description"] ?? "No especificada"}'),
-                            // Otros detalles según sea necesario
-                          ],
-                        ),
-                        // Agregar aquí cualquier otra información que desees mostrar
-                      ),
-                    );
-                },
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Codigo ${sala["code"]}'),
+          Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
+          Text('Nombre: ${sala["name"] ?? "No especificada"}'),
+          Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
+        ],
+      ),
     );
   }
 }

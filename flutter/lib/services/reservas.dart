@@ -39,7 +39,7 @@ class ApiReserve {
             try {
               final response = await http.post(url_, headers: headers, body: json.encode(requestBody));
               _logger.d(json.decode(response.body));
-               if (response.statusCode >= 200 && response.statusCode <= 400) {
+               if (response.statusCode >= 200 && response.statusCode < 400) {
                 return json.decode(response.body);
                 }else {
                 _logger.e('Error al ingresar la reserva. Código de estado: ${response.statusCode}');

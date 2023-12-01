@@ -38,13 +38,15 @@ class _SalasSearchFormState extends State<SalasSearchForm> {
                 widget.onSubmit(roomCode);
                 
                 String jwt = await GoogleService.getData('idToken');
-                List<dynamic> respuesta = await ApiSalas.obtenerSalasCodigo(jwt, roomCode);
+                Map<String, dynamic> respuesta = await ApiSalas.obtenerSalasCodigo(jwt, roomCode);
+                print('Salas obtenidas: $respuesta');
 
                 //Mostrar el widget SalasWidget después de enviar los datos
+                // ignore: use_build_context_synchronously
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SalasSWidget(salas: respuesta),
+                    builder: (context) => SalasSWidget(sala: respuesta),
                   ),
                 );
               },

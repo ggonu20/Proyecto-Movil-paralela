@@ -29,7 +29,7 @@ class ApiSalas {
           }
         
         //Funcion obtener salas por codigo
-         static Future<List<dynamic>> obtenerSalasCodigo(String jwt, String roomCode) async {
+         static Future<Map<String, dynamic>> obtenerSalasCodigo(String jwt, String roomCode) async {
             Uri url_ = Uri.parse('$url/booking/v1/rooms/$roomCode');
 
             Map<String, String> headers = {
@@ -40,17 +40,17 @@ class ApiSalas {
 
             try {
               final response = await http.get(url_, headers: headers);
-                  if (response.statusCode == 200){
-                    _logger.d(json.decode(response.body));
-                    return json.decode(response.body);
-                  }else {
-                    _logger.e('Error al cancelar la reserva. Código de estado: ${response.statusCode}');
-                    return [];
-                  }
+              if (response.statusCode >= 200 && response.statusCode < 400) {
+                _logger.d(json.decode(response.body));
+                Map<String, dynamic> data = json.decode(response.body);
+                return data;
+              } else {
+                _logger.e('Error al obtener la sala. Código de estado: ${response.statusCode}');
+                return {};
+              }
             } catch (error) {
-              _logger.e('Error al obtener salas: $error');
-              // Devolver un mapa vacío en caso de error, puedes ajustarlo según tu lógica
-              return [];
+              _logger.e('Error al obtener la sala: $error');
+              return {};
             }
           }
 }
