@@ -30,6 +30,10 @@ class _FormsScreenState extends State<FormsreserveRequest> {
     if (value == null || value.isEmpty){
       return 'Ingrese la fecha';
     }
+    RegExp dateRegExp = RegExp(r'^\d{4}-\d{2}-\d{2}$');
+    if (!dateRegExp.hasMatch(value)) {
+    return 'Formato de fecha inválido. Use yyyy-mm-dd';
+  }
     return null;
   }
 
@@ -37,12 +41,20 @@ class _FormsScreenState extends State<FormsreserveRequest> {
     if (value == null || value.isEmpty){
       return 'Ingrese el inicio';
     }
+    RegExp dateRegExp = RegExp(r'^\d{2}:\d{2}:\d{2}$');
+    if (!dateRegExp.hasMatch(value)) {
+    return 'Formato de fecha inválido. Use hh:mm:ss';
+    } 
     return null;
   }
 
   String? quantityValidator(String? value){
     if (value == null || value.isEmpty){
       return 'Ingrese la Cantidad';
+    }
+    final RegExp regex = RegExp(r'^[0-9]+$');
+    if (!regex.hasMatch(value)) {
+    return 'La Cantidad debe contener solo números';
     }
     return null;
   }
