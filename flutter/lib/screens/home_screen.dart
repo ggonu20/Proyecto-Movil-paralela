@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '~ Grupo Epsilon ~',
+                  '~ Grupo Épsilon ~',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14.0,
