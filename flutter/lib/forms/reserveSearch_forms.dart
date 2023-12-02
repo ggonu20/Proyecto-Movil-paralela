@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cpyd/widget/reservas_widget.dart'; //importar reservas widget
-import 'package:cpyd/services/google_service.dart'; //importar google service
-import 'package:cpyd/services/reservas.dart'; //importar reservas
+import 'package:cpyd/services/google_service.dart'; //importar datos de google service
+import 'package:cpyd/services/reservas.dart'; //importar funciones reservas
 
 class FormsreserveSearch extends StatefulWidget {
   final Function(String, String, String) onSubmit;
@@ -30,15 +30,19 @@ class _FormsScreenState extends State<FormsreserveSearch> {
           children: [
             TextField(
               controller: roomCodeController,
-              decoration: const InputDecoration(labelText: 'Código de Sala', helperText: 'Ejemplo: R01'),
+              decoration: const InputDecoration(
+                  labelText: 'Código de Sala', helperText: 'Ejemplo: B01'),
             ),
             TextField(
               controller: bookingTokenController,
-              decoration: const InputDecoration(labelText: 'Token', helperText: 'Ejemplo: 04970361-579d-47a1-bef5-efb7fd89d749'),
+              decoration: const InputDecoration(
+                  labelText: 'Token',
+                  helperText: 'Ejemplo: 04970361-579d-47a1-bef5-efb7fd89d749'),
             ),
             TextField(
               controller: dateController,
-              decoration: const InputDecoration(labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
+              decoration: const InputDecoration(
+                  labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -49,23 +53,47 @@ class _FormsScreenState extends State<FormsreserveSearch> {
 
                 // Llamada a la función onSubmit del widget padre
                 widget.onSubmit(roomCode, bookingToken, date);
+                //extraemos el jwt del usuario
                 String jwt = await GoogleService.getData('idToken');
-                            //mapeamos el requestBody con los datos que sacamos del formulario
-                            Map<String, dynamic> requestBody = {
-                              'roomCode': roomCode,
-                              'bookingToken': bookingToken,
-                              'date': date,
-                            };
-                List<dynamic> respuesta = await ApiReserve.reserveSearch(jwt, requestBody);
-
-                // Mostrar el widget ReservasWidget después de enviar los datos
-                // ignore: use_build_context_synchronously
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReservasWidget(reservas: respuesta),
-                  ),
-                );
+                //mapeamos el requestBody con los datos que sacamos del formulario
+                Map<String, dynamic> requestBody = {
+                  'roomCode': roomCode,
+                  'bookingToken': bookingToken,
+                  'date': date,
+                };
+                List<dynamic> respuesta =
+                    await ApiReserve.reserveSearch(jwt, requestBody);
+                if (respuesta.isNotEmpty) {
+                  // Mostrar el widget ReservasWidget después de enviar los datos
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReservasWidget(reservas: respuesta),
+                    ),
+                  );
+                } else {
+                  // Hubo un error en la reserva, mostrar un mensaje de error
+                  // ignore: use_build_context_synchronously
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Error al consultar las reservas'),
+                        content: const Text(
+                            'Hubo un error al consultar las reservas. Inténtelo de nuevo.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Aceptar'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
               child: const Text('Enviar Datos'),
             ),

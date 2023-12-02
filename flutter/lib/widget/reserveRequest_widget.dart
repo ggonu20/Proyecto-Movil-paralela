@@ -11,29 +11,28 @@ class ReserveRWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Reserva creada con exito'),
       ),
-              //cambiar body para adaptar a lo que entrega al crear la reserva
-              body: ListView.builder(
-                itemCount: reservas.length,
-                itemBuilder: (context, index) {
-                  Map<String, dynamic> sala = reservas[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text('Sala: ${sala["roomCode"]}'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Token de reserva: ${sala["token"] ?? "No especificada"}'),
-                            Text('Mail: ${sala["userEmail"] ?? "No especificada"}'),
-                            Text('Inicio: ${sala["start"] ?? "No especificada"}'),
-                            Text('Termino: ${sala["end"] ?? "No especificada"}'),
-                            // Otros detalles según sea necesario
-                          ],
-                        ),
-                        // Agregar aquí cualquier otra información que desees mostrar
-                      ),
-                    );
-                },
+      //Crea un listview que mete en cards cada item en la lista
+      body: ListView.builder(
+        itemCount: reservas.length,
+        itemBuilder: (context, index) {
+          Map<String, dynamic> sala = reservas[index];
+          return Card(
+            child: ListTile(
+              title: Text('Sala: ${sala["roomCode"]}'),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      'Token de reserva: ${sala["token"] ?? "No especificada"}'),
+                  Text('Mail: ${sala["userEmail"] ?? "No especificada"}'),
+                  Text('Inicio: ${sala["start"] ?? "No especificada"}'),
+                  Text('Termino: ${sala["end"] ?? "No especificada"}'),
+                ],
               ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

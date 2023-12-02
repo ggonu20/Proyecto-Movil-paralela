@@ -11,13 +11,13 @@ class SalasSWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sala encontrada'),
       ),
+      //Creamos una card con los datos de la sala encontrada
       body: Card(
         child: ListTile(
           title: Text('Código ${sala["code"]}'),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text('Codigo ${sala["code"]}'),
               Text('Ubicación: ${sala["location"] ?? "No especificada"}'),
               Text('Nombre: ${sala["name"] ?? "No especificada"}'),
               Text('Capacidad: ${sala["capacity"] ?? "No especificada"}'),
