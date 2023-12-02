@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Aplicación de Ejemplo',
+      debugShowCheckedModeBanner: false,
+      title: 'Aplicación de Epsilon',
       home: LoginScreen(),
     );
   }
