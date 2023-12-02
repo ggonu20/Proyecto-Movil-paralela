@@ -98,6 +98,7 @@ class HomeScreen extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const LoginScreen()));
                         },
+                        //estilo del botón
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromARGB(255, 214, 149, 74),
                           padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 20.0), // Espaciado interno
@@ -105,7 +106,8 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
                           ),
                         ),
-                        child: const Text('Mostrar Salas',
+                        //texto y estilo de texto del botón
+                        child: const Text('Desconectar de Google',
                         style: TextStyle(
                           color: Colors.white,
                           ),
@@ -117,14 +119,25 @@ class HomeScreen extends StatelessWidget {
           bottomNavigationBar: Container(
             color: Colors.blue, // Puedes ajustar el color según tu diseño
             height: 60.0, // Ajusta la altura según tus necesidades
-              child: const Center(
-                child:  Text(
+              child: const Column(
+                children:[
+                Text(
                   'Universidad Tecnológica Metropolitana',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
+                    height: 2.5,
                   ),
                 ),
+                Text(
+                  '~ Grupo Epsilon ~',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14.0,
+                    height: 1,
+                  ),
+                ),
+                ],
               ),
           ),
       );

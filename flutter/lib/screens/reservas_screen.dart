@@ -33,11 +33,14 @@ class ReservasScreen extends StatelessWidget {
             },
             style: ElevatedButton.styleFrom(
               primary: Color.fromARGB(71, 123, 212, 126),
+              padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0), // Espaciado interno
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+                ),
             ),
             child: const Text('Buscar Reserva'),
           ),
-
-          const SizedBox(height: 16), //espacio
+          const SizedBox(height: 35), //espacio
           //Crear reserva /v1/reserve/request
           ElevatedButton(
             onPressed: () async {
@@ -51,10 +54,14 @@ class ReservasScreen extends StatelessWidget {
             },
             style: ElevatedButton.styleFrom(
               primary: Color.fromARGB(71, 123, 212, 126),
+              padding: EdgeInsets.symmetric(horizontal: 125.0, vertical: 20.0), // Espaciado interno
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+              ),
             ),
             child: const Text('Crear Reserva'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 35),
           //Info reserva /v1/reserve/$roomCode/schedule/$isoDate
           ElevatedButton(
             onPressed: () async {
@@ -67,12 +74,15 @@ class ReservasScreen extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(
-                  70, 81, 55, 230), // Cambia el color de fondo del botón
+              primary: Color.fromARGB(70, 81, 55, 230), // Cambia el color de fondo del botón
+              padding: EdgeInsets.symmetric(horizontal: 90.0, vertical: 20.0), // Espaciado interno
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+              ),
             ),
             child: const Text('Buscar Reserva por codigo'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 35),
           // Cancelar reserva /v1/reserve/$token/cancel
           ElevatedButton(
             onPressed: () async {
@@ -86,12 +96,15 @@ class ReservasScreen extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(
-                  70, 206, 28, 28), // Cambia el color de fondo del botón
+              primary: Color.fromARGB(70, 206, 28, 28), // Cambia el color de fondo del botón
+              padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0), // Espaciado interno
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
+              ),
             ),
             child: const Text('Eliminar Reserva'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 35),
         ]),
       ),
     );
