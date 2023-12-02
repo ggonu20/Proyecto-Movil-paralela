@@ -9,6 +9,7 @@ class ReserveCancelForm extends StatefulWidget {
   const ReserveCancelForm({super.key, required this.onSubmit});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ReserveCancelFormState createState() => _ReserveCancelFormState();
 }
 
@@ -38,8 +39,11 @@ class _ReserveCancelFormState extends State<ReserveCancelForm> {
                 String token = tokenController.text;
                 // Llamada a la función onSubmit del widget padre
                 widget.onSubmit(token);
+                //Extraemos el jwt desde la informacion de contacto
                 String jwt = await GoogleService.getData('idToken');
+                //Llamamos a la funcion bool de reserveCancel() que nos devuelve true si la reserva se ha podido cancelar y sino
                 bool isCancellationSuccessful = await ApiReserve.reserveCancel(jwt, token);
+                //Mandamos a llamar al widget de cancelar reserva
                 // ignore: use_build_context_synchronously
                 Navigator.push(
                   context,

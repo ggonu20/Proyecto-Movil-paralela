@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class ReserveCWidget extends StatelessWidget {
   final bool isSuccess;
 
-  const ReserveCWidget({Key? key, required this.isSuccess}) : super(key: key);
+  const ReserveCWidget({super.key, required this.isSuccess});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //Preguntamos si isSucces es true o false, para cada caso se crea un titulo distinto
         title: isSuccess ? const Text('Reserva Cancelada') : const Text('Error al Cancelar Reserva'),
       ),
       body: Center(

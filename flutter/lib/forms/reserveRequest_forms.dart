@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cpyd/services/google_service.dart'; //importar google service
-import 'package:cpyd/services/reservas.dart'; //importar reservas
+import 'package:cpyd/services/google_service.dart'; //importar datos de google service
+import 'package:cpyd/services/reservas.dart'; //importar funciones reservas
 import 'package:cpyd/widget/reserveRequest_widget.dart'; //import widget de respuesta
 
 class FormsreserveRequest extends StatefulWidget {
@@ -18,43 +18,46 @@ class _FormsScreenState extends State<FormsreserveRequest> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController startController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
-
-  String? roomCodeValidator(String? value){
-    if (value == null || value.isEmpty){
+  //Funcion validadora de roomCode
+  String? roomCodeValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese el Código de Sala';
     }
     return null;
   }
 
-  String? dateValidator(String? value){
-    if (value == null || value.isEmpty){
+  //Funcion validadora de date
+  String? dateValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese la fecha';
     }
     RegExp dateRegExp = RegExp(r'^\d{4}-\d{2}-\d{2}$');
     if (!dateRegExp.hasMatch(value)) {
-    return 'Formato de fecha inválido. Use yyyy-mm-dd';
-  }
+      return 'Formato de fecha inválido. Use yyyy-mm-dd';
+    }
     return null;
   }
 
-  String? startValidator(String? value){
-    if (value == null || value.isEmpty){
+  //Funcion validadora de fecha inicio
+  String? startValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese el inicio';
     }
     RegExp dateRegExp = RegExp(r'^\d{2}:\d{2}:\d{2}$');
     if (!dateRegExp.hasMatch(value)) {
-    return 'Formato de fecha inválido. Use hh:mm:ss';
-    } 
+      return 'Formato de fecha inválido. Use hh:mm:ss';
+    }
     return null;
   }
 
-  String? quantityValidator(String? value){
-    if (value == null || value.isEmpty){
+  //Funcion validadora de quantity
+  String? quantityValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Ingrese la Cantidad';
     }
     final RegExp regex = RegExp(r'^[0-9]+$');
     if (!regex.hasMatch(value)) {
-    return 'La Cantidad debe contener solo números';
+      return 'La Cantidad debe contener solo números';
     }
     return null;
   }
@@ -74,22 +77,26 @@ class _FormsScreenState extends State<FormsreserveRequest> {
             children: [
               TextFormField(
                 controller: roomCodeController,
-                decoration: const InputDecoration(labelText: 'Código de Sala', helperText: 'Ejemplo: R01'),
+                decoration: const InputDecoration(
+                    labelText: 'Código de Sala', helperText: 'Ejemplo: R01'),
                 validator: roomCodeValidator,
               ),
               TextFormField(
                 controller: dateController,
-                decoration: const InputDecoration(labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
+                decoration: const InputDecoration(
+                    labelText: 'Fecha', helperText: 'Ejemplo: 2023-12-01'),
                 validator: dateValidator,
               ),
               TextFormField(
                 controller: startController,
-                decoration: const InputDecoration(labelText: 'Inicio', helperText: 'Ejemplo: 17:00:00'),
+                decoration: const InputDecoration(
+                    labelText: 'Inicio', helperText: 'Ejemplo: 17:00:00'),
                 validator: startValidator,
               ),
               TextFormField(
                 controller: quantityController,
-                decoration: const InputDecoration(labelText: 'Cantidad', helperText: 'Ejemplo: 1'),
+                decoration: const InputDecoration(
+                    labelText: 'Cantidad', helperText: 'Ejemplo: 1'),
                 validator: quantityValidator,
               ),
               const SizedBox(height: 16),
@@ -100,27 +107,29 @@ class _FormsScreenState extends State<FormsreserveRequest> {
                     String date = dateController.text;
                     String start = startController.text;
                     String quantity = quantityController.text;
-
                     // Llamada a la función onSubmit del widget padre
                     widget.onSubmit(roomCode, date, start, quantity);
+                    //Llamamos el jwt del usuario
                     String jwt = await GoogleService.getData('idToken');
-                    //mapeamos el requestBody con los datos que sacamos del formulario
+                    //Mapeamos el requestBody con los datos que sacamos del formulario
                     Map<String, dynamic> requestBody = {
                       'roomCode': roomCode,
                       'date': date,
                       'start': start,
                       "quantity": quantity,
                     };
-                    List<dynamic> respuesta = await ApiReserve.reserveRequest(jwt, requestBody);
-                    if (respuesta.isNotEmpty){
+                    List<dynamic> respuesta =
+                        await ApiReserve.reserveRequest(jwt, requestBody);
+                    if (respuesta.isNotEmpty) {
                       // Mostrar el widget de respuesta con exito
                       // ignore: use_build_context_synchronously
                       Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ReserveRWidget(reservas: respuesta),
-                      ),);
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ReserveRWidget(reservas: respuesta),
+                        ),
+                      );
                     } else {
                       // Hubo un error en la reserva, mostrar un mensaje de error
                       // ignore: use_build_context_synchronously
@@ -128,8 +137,9 @@ class _FormsScreenState extends State<FormsreserveRequest> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text('Error en la reserva'),
-                            content: const Text('Hubo un error al realizar la reserva. Inténtelo de nuevo.'),
+                            title: const Text('Error al crear la reserva'),
+                            content: const Text(
+                                'Hubo un error al realizar la reserva. Inténtelo de nuevo.'),
                             actions: [
                               TextButton(
                                 onPressed: () {
@@ -142,7 +152,6 @@ class _FormsScreenState extends State<FormsreserveRequest> {
                         },
                       );
                     }
-                  
                   }
                 },
                 child: const Text('Enviar Datos'),
